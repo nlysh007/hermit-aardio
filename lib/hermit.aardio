@@ -1,1 +1,138 @@
 
+//Hermit API
+import web.rest.jsonLiteClient; 
+import string;
+class hermit{
+	ctor( url ){
+		this = ..web.rest.jsonLiteClient();
+		this._req = this.api(url);
+	};
+	
+	getState = function(){
+		return this._req.get(); 
+	}
+	
+	getScreen = function(){
+		return this._req.data.screen.get(); 
+	}
+
+	getScreenshot = function(){
+		return this._req.image.screen.get(); 
+	}
+		
+	getNodes = function(){
+		return this._req.data.nodes.get(); 
+	}
+	
+	getDevice = function(){
+		return this._req.data.device.get(); 
+	}
+
+	getCliBoard = function(){
+		return this._req.data.cliBoard.get();
+	}
+	
+	setCliBoard = function(content){
+		return this._req.data.cliBoard.put({content = content});
+	}
+	
+	input = function(by,obj,text){
+			return this._req.input.get({
+				by = by;
+				obj = obj;
+				text = text;
+			});
+	}
+	
+	inputByText = function(text,v){
+		return this.input("text",text,v); 
+	}
+	
+	inputById = function(id,v){
+		return this.input("id",id,v); 
+	}
+	
+	inputByDesc = function(desc,v){
+		return this.input("desc",desc,v); 
+	}	
+	
+	click  = function(x,y){
+		return this._req.click.get({x=x;y=y}); 
+	}
+	
+	clickByText = function(text,index=1){
+		return this._req.click.text[text][index-1].get(); 
+	}
+	
+	getTextCount = function(v){
+		return this._req.click.text[v]["/_count"].get(); 
+	}
+	
+	clickById = function(id,index=1){
+		return this._req.click.id[id][index-1].get();
+	}
+	
+	getIdCount = function(v){	
+		return this._req.click.id[v]["/_count"].get(); 
+	}
+	
+	clickByDesc = function(desc){
+		return this._req.click.desc[desc].get();
+	}
+	
+	swipe = function(x1,y1,x2,y2){
+		return this._req.swipe.get({x1=x1;y1=y1;x2=x2;y2=y2});
+	}
+	action = {
+		@{
+			_get = function(k){
+				k = ..string.replace(k,"\u","_\1")
+				k = ..string.lower(k)
+				return owner(k); 	
+			}
+			_call = function(k){
+				return this._req.action[k].get; 
+			}
+			
+		}
+	}
+}
+
+/**intellisense()
+hermit = HermitApi
+hermit(.(url) = 创建HermitApi
+hermit() = !hermit.
+end intellisense**/
+
+/**intellisense(!hermit)
+getState() = 获取软件运行状态
+getScreen() = 获取屏幕信息
+getScreenshot() = 获取屏幕截图
+getNodes() = 获取界面控件信息
+getDevice() = 获取设备相关信息
+getCliBoard() = 获取剪切板内容
+setCliBoard(.(content) = 设置剪切板内容
+inputByText(.(text,v)) = 通过text选择输入控件并输入内容
+inputById(.(id,v)) = 通过id选择输入控件并输入内容
+inputByDesc(.(desc,v)) = 通过desc选择输入控件并输入内容
+click(.(x,y) = 点击左边(x,y)
+clickByText(.(text,index) = 通过text属性查找并点击第index个控件
+clickById(.(id,index) = 通过id属性查找并点击第index个控件
+clickByDesc(.(desc) = 通过desc属性查找并点击控件
+getTextCount(v) = 获取控件属性text=v的控件总数
+getIdCount(v) =  获取控件属性id=v的控件总数
+swipe(.(x1,y1,x2,y2) = 滑动，从坐标(x1, y1)滑动至(x2, y2)
+action = 基于无障碍的全局操作\n!action.
+end intellisense**/
+
+/**intellisense(!action)
+back() = 基于无障碍的返回；
+home() = 基于无障碍的按下Home键；
+recents() = 基于无障碍的显示最近任务
+noticefications() = 基于无障碍的打开通知栏
+quickSettings () = 基于无障碍的拉开下拉栏
+power() = 基于无障碍的长按电源键
+lockScreen() = 基于无障碍的锁屏，限制Android 9.0+
+splitScreen() = 基于无障碍的锁屏，限制Android 9.0+
+screenShot() = 基于无障碍的截屏，限制Android 9.0+
+end intellisense**/
