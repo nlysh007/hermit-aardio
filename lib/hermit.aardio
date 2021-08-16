@@ -133,6 +133,6 @@ noticefications() = 基于无障碍的打开通知栏
 quickSettings () = 基于无障碍的拉开下拉栏
 power() = 基于无障碍的长按电源键
 lockScreen() = 基于无障碍的锁屏，限制Android 9.0+
-splitScreen() = 基于无障碍的锁屏，限制Android 9.0+
+splitScreen() = 基于无障碍的分屏，限制Android 9.0+
 screenShot() = 基于无障碍的截屏，限制Android 9.0+
 end intellisense**/
