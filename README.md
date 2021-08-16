@@ -15,8 +15,8 @@ ide.installLib("hermit","https://github.com/nlysh007/hermit-aardio/releases/late
 import hermit
 var url = "http://192.168.31.7:9999";//安卓设备在局域网中的地址
 var hermit = hermit(url);  
-	hermit.clickByText("微信")//打开微信
-  
+hermit.clickByText("微信")//打开微信
+```
 ## 已知问题与解决方法
 
 
