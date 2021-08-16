@@ -3,7 +3,7 @@
 ## 安装
 ```
 在aardio引用远程扩展库示例：
-_IMPORTURL["process.command"] = "https://github.com/nlysh007/hermit-aardio/releases/latest/download/hermit.tar.lzma"
+_IMPORTURL["hermit"] = "https://github.com/nlysh007/hermit-aardio/releases/latest/download/hermit.tar.lzma"
 import hermit
 
 也可以在aardio中单独运行以下代码安装扩展库：
